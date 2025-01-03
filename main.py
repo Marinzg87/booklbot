@@ -16,13 +16,22 @@ def main():
             characters[character] += 1
         elif character.isalpha():
             characters[character] = 1
+            
+    # sort the counted characters by the count desc
+    def sort_on(d):
+        return d["num"]
+    
+    sorted_list = []
+    for c in characters:
+        sorted_list.append({"char": c, "num": characters[c]})
+    sorted_list.sort(reverse=True, key=sort_on)
         
     print(f"--- Begin report of {book_path} ---")
     print(f"{words_count} words found in the document")
     print()
     
-    for item in characters:
-        print(f"The {item} character was found {characters[item]} times")
+    for item in sorted_list:
+        print(f"The {item['char']} character was found {item['num']} times")
 
     print("--- End report ---")
 
